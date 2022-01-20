@@ -1,4 +1,4 @@
-![](images/shopify-ipo-blog-banner.jpg)
+![](images/shopify_banner.png)
 
 ## Question 1
 
