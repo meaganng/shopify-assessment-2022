@@ -144,15 +144,25 @@ SELECT * FROM Orders
 WHERE ShipperID='1'
 ```
 ## b. What is the last name of the employee with the most orders?
-
-SELECT e.LastName, COUNT(o.OrderID) as NumberofOrders FROM Employees as
-e JOIN Orders as o ON e.EmployeeID = o.EmployeeID GROUP BY e.EmployeeID
-ORDER BY NumberofOrders DESC LIMIT 1
+```{sql}
+SELECT e.LastName, COUNT(o.OrderID) as NumberofOrders
+FROM Employees as e
+JOIN Orders as o
+ON e.EmployeeID = o.EmployeeID
+GROUP BY e.EmployeeID
+ORDER BY NumberofOrders 
+DESC
+LIMIT 1
+```
 
 ## c. What product was ordered the most by customers in Germany?
-
-SELECT p.ProductName, SUM(Quantity) AS TotalQuantity From Orders AS o,
-OrderDetails AS od, Products AS p, Customers as c WHERE od.OrderID =
-o.OrderID AND od.ProductID = p.ProductID AND c.CustomerID = o.CustomerID
-AND c.Country = "Germany" GROUP BY p.ProductID ORDER BY TotalQuantity
-DESC LIMIT 1
+```{sql}
+SELECT p.ProductName, SUM(Quantity) AS TotalQuantity
+From Orders AS o, OrderDetails AS od, Products AS p, Customers as c
+WHERE od.OrderID = o.OrderID 
+AND od.ProductID = p.ProductID 
+AND c.CustomerID = o.CustomerID 
+AND c.Country = "Germany" 
+GROUP BY p.ProductID ORDER BY TotalQuantity DESC
+LIMIT 1
+```
