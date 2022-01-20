@@ -40,7 +40,7 @@ shopifyaveragevalue <- mean(shopify_data$order_amount) # This is the original wa
 sort(shopify_data$order_amount, decreasing = T) # Dataset has large values upon reviewing the entire order_amount column
 ```
 
-###### Initial thoughts
+### Initial thoughts
 
 The Average is done on the order_amount column but that doesnt take
 into account the actual order amounts per shop as some shops may sell a
@@ -77,9 +77,6 @@ ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = Ave
 sneaker_outliers <- sneakers %>%
   mutate(AverageStoreValue = sort(AverageStoreValue, decreasing = T)) %>% # You can see there are 2 outliers when we look at the ascending to descending values of the average store 
   filter(!AverageStoreValue > 1000) # Filter stores out that have an AverageStoreValue greater than 1000
-```
-
-```{r}
 # Visualize the data without outliers
 ggplot(data = sneaker_outliers, mapping = aes(x = shop_id, AverageStoreValue, color = AverageStoreValue, size = AverageStoreValue)) + 
   geom_point() + 
