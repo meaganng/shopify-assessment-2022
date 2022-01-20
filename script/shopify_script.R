@@ -27,7 +27,7 @@ sneakers <- shopify_data %>%
 # Plot
 ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = AverageStoreValue)) + 
   geom_point() + 
-  labs(title = "Average order value of sneakers by shop identification", 
+  labs(title = "Average order value of sneakers by shop", 
        x = "Shop Identification Number", 
        y = "Average order value", 
        size = "Store value by size") +
