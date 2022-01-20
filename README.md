@@ -17,19 +17,15 @@ c.  What is its value?
 
 ------------------------------------------------------------------------
 
-### Attaching packages
+### Attaching packages and inspecting the dataset
 
 ```{r, message = FALSE, warning = FALSE}
 library(here)
 library(tidyverse)
-```
 
-```{r}
 # Read in .csv file
 shopify_data <- read_csv(here("2019 Winter Data Science Intern Challenge Data Set - Sheet1.csv"))
-```
 
-```{r results='hide'}
 # Assess the data
 shopify_data$order_amount # Review the order_amount column
 
@@ -51,6 +47,8 @@ that 2 rows of data in the order_amount column have a high AOV!
 
 ------------------------------------------------------------------------
 
+### Clean up and visualize data
+
 ```{r}
 # Clean up
 sneakers <- shopify_data %>%
@@ -59,10 +57,8 @@ sneakers <- shopify_data %>%
   summarise(AverageStoreValue = mean(rep(order_amount)))%>% # Find the mean for each store
   group_by(AverageStoreValue) %>% 
   arrange(desc(AverageStoreValue)) # Sort by decreasing 
-```
-
-```{r}
-# Visualize the data
+  
+  # Visualize the data
 ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = AverageStoreValue)) + 
   geom_point() + 
   labs(title = "Average order value of sneakers by shop identification", 
@@ -72,6 +68,9 @@ ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = Ave
   guides(colour = FALSE)
 ```
 ![](images/Plot1.png)
+
+### Remove outliers and re-visualize data
+
 ```{r}
 # Check and remove outliers
 sneaker_outliers <- sneakers %>%
@@ -112,7 +111,10 @@ visualize and then by removing the outliers from shop_id 42 and 78, you
 can see the data for the other shops average order value are in a
 similar range. Although the way Shopify calculates the AOV 'works', it
 doesnt take into account each store which may have a different amount of
-sales or the pricing per sneakers.
+sales or the pricing per sneakers. A better metric to report this dataset
+is using the median. The median can be more descriptive in a dataset than
+calculating the average. This is because the median is less affected by
+outliers in a dataset which can give an approximate mean. 
 
 ------------------------------------------------------------------------
 
@@ -122,7 +124,10 @@ sneakers_median <- median(shopify_data$order_amount)
 
 ### 1c. What is its value?
 
-The median value is \$284 on the order_amount column!
+The median value is $284 on the order_amount column! This is a better
+number than the initial AOV calculated by Shopify! The median accounted 
+for shop_id 42 and 78's high order amount and produced an approximate
+average.
 
 ------------------------------------------------------------------------
 
@@ -138,11 +143,17 @@ b.  What is the last name of the employee with the most orders?
 c.  What product was ordered the most by customers in Germany?
 
 ## a. How many orders were shipped by Speedy Express in total?
+
+A total of 54 orders were shipped by Speedy Express. 
+
 ```{sql}
 SELECT * FROM Orders
 WHERE ShipperID='1'
 ```
 ## b. What is the last name of the employee with the most orders?
+
+The last name of the employee with the most orders is Peacock.
+
 ```{sql}
 SELECT e.LastName, COUNT(o.OrderID) as NumberofOrders
 FROM Employees as e
@@ -155,6 +166,10 @@ LIMIT 1
 ```
 
 ## c. What product was ordered the most by customers in Germany?
+
+The product that was ordered the most by customers in Germany is
+Boston Crab Meat. 
+
 ```{sql}
 SELECT p.ProductName, SUM(Quantity) AS TotalQuantity
 From Orders AS o, OrderDetails AS od, Products AS p, Customers as c
