@@ -1,16 +1,3 @@
----
-title: "Shopify Assessment"
-output: html_document
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-```
-
 ## Question 1
 
 Given some sample data, write a program to answer the following: click
@@ -82,7 +69,7 @@ ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = Ave
        size = "Store value by size") +
   guides(colour = FALSE)
 ```
-
+![This is an image](file:///C:/Users/Meagan/Desktop/shopifyr/000003.png)
 ```{r}
 # Check and remove outliers
 sneaker_outliers <- sneakers %>%
