@@ -3,7 +3,7 @@ library(here)
 library(tidyverse)
 
 # Read in csv
-shopify_data <- read_csv(here("2019 Winter Data Science Intern Challenge Data Set - Sheet1.csv")) 
+shopify_data <- read_csv(here("script/data/2019 Winter Data Science Intern Challenge Data Set - Sheet1.csv")) 
 
 shopify_data$order_amount # review the order_amount column
 
