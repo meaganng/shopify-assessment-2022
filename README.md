@@ -1,3 +1,5 @@
+![](images/shopify-ipo-blog-banner.jpg)
+
 ## Question 1
 
 ### Attaching packages and inspecting the dataset
