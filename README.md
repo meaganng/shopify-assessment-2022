@@ -49,7 +49,7 @@ ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = Ave
 ```
 ![](images/shopify_assessment_plot1.png)
 
-###### Mid-point thoughts
+### Mid-point thoughts
 
 When you visualize the data, the graph doesnt look amazing! This is because there is a large outlier
 that is skewing the data. We are unable to view shops that have a smaller AOV due to this point.
