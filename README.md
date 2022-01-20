@@ -118,10 +118,6 @@ outliers in a dataset which can give an approximate mean.
 
 ------------------------------------------------------------------------
 
-```{r}
-sneakers_median <- median(shopify_data$order_amount)
-```
-
 ### 1c. What is its value?
 
 The median value is $284 on the order_amount column! This is a better
@@ -129,6 +125,9 @@ number than the initial AOV calculated by Shopify! The median accounted
 for shop_id 42 and 78's high order amount and produced an approximate
 average.
 
+```{r}
+sneakers_median <- median(shopify_data$order_amount)
+```
 ------------------------------------------------------------------------
 
 ## Question 2
