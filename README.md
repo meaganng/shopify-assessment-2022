@@ -27,7 +27,6 @@ library(tidyverse)
 ```{r}
 # Read in .csv file
 shopify_data <- read_csv(here("2019 Winter Data Science Intern Challenge Data Set - Sheet1.csv"))
-
 ```
 
 ```{r results='hide'}
@@ -41,11 +40,14 @@ shopifyaveragevalue <- mean(shopify_data$order_amount) # This is the original wa
 sort(shopify_data$order_amount, decreasing = T) # Dataset has large values upon reviewing the entire order_amount column
 ```
 
-## Initial thoughts
+###### Initial thoughts
 
-Average is done on the entire order_amount column but that doesnt take
+The Average is done on the order_amount column but that doesnt take
 into account the actual order amounts per shop as some shops may sell a
-higher cost sneaker than others.
+higher cost sneaker than others. When exploring the dataset, checking if there are any NA values is crucial! 
+This is incase NA values are causing trouble in our calculations.  Since there are no NA values, the next step
+is to see why the Shopify average order value (AOV) is so high. Woah! When we sort by ascending, you can see 
+that 2 rows of data in the order_amount column have a high AOV! 
 
 ------------------------------------------------------------------------
 
