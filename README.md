@@ -159,7 +159,7 @@ LIMIT 1
 
 ### c. What product was ordered the most by customers in Germany?
 
-The product that was ordered the most by customers in Germany is
+The product that was ordered the most by customers in Germany was
 Boston Crab Meat. 
 
 ```{sql}
