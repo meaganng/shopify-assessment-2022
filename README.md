@@ -38,7 +38,7 @@ sneakers <- shopify_data %>%
   group_by(AverageStoreValue) %>% 
   arrange(desc(AverageStoreValue)) # Sort by decreasing 
   
-  # Visualize the data
+# Visualize the data
 ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = AverageStoreValue)) + 
   geom_point() + 
   labs(title = "Average order value of sneakers by shop identification", 
