@@ -11,11 +11,8 @@ shopify_data <- read_csv(here("2019 Winter Data Science Intern Challenge Data Se
 
 # Assess the data
 shopify_data$order_amount # Review the order_amount column
-
 checkNA <- is.na(shopify_data) # Check for any NA values in the dataset
-
 shopifyaveragevalue <- mean(shopify_data$order_amount) # This is the original way Shopify used to calculate the AOV
-
 sort(shopify_data$order_amount, decreasing = T) # Dataset has large values upon reviewing the entire order_amount column
 ```
 
@@ -41,7 +38,7 @@ sneakers <- shopify_data %>%
   group_by(AverageStoreValue) %>% 
   arrange(desc(AverageStoreValue)) # Sort by decreasing 
   
-  # Visualize the data
+# Visualize the data
 ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = AverageStoreValue)) + 
   geom_point() + 
   labs(title = "Average order value of sneakers by shop identification", 
@@ -50,7 +47,17 @@ ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = Ave
        size = "Store value by size") +
   guides(colour = FALSE)
 ```
-![](images/Plot1.png)
+![](images/shopify_assessment_plot1.png)
+
+### Mid-point thoughts
+
+When you visualize the data, the graph doesnt look amazing! This is because there is a large outlier
+that is skewing the data. We are unable to view shops that have a smaller AOV due to this point.
+This is interesting! Some thoughts that come to mind are "Why do these 2 shops have such high averages?"
+
+On further inspection and exploration of the data, the 2 shops that have high AOV's are 42 and 78. There is no
+information on the shop and the pricing of the sneakers or if they sell high-end luxury sneakers. However, we can make
+the assumption that these two stores sell higher than average sneakers. This is the root cause of our skewed data. 
 
 ### Remove outliers and re-visualize data
 
@@ -59,6 +66,7 @@ ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = Ave
 sneaker_outliers <- sneakers %>%
   mutate(AverageStoreValue = sort(AverageStoreValue, decreasing = T)) %>% # You can see there are 2 outliers when we look at the ascending to descending values of the average store 
   filter(!AverageStoreValue > 1000) # Filter stores out that have an AverageStoreValue greater than 1000
+  
 # Visualize the data without outliers
 ggplot(data = sneaker_outliers, mapping = aes(x = shop_id, AverageStoreValue, color = AverageStoreValue, size = AverageStoreValue)) + 
   geom_point() + 
@@ -68,12 +76,21 @@ ggplot(data = sneaker_outliers, mapping = aes(x = shop_id, AverageStoreValue, co
        size = "Average order value by size",
        color = "Order amount")
 ```
-![](images/Plot2.png)
+![](images/shopify_assessment_plot2.png)
+
+### Final thoughts
+
+Wow! After removing the outliers, you can clearly see that the AOV of shop 42 and 78 skewed the data enormously. 
+With the size dot variation and variable colours you can see which shops have large AOV's visually. This helps viewers
+glance easily at a graph and be able to understand quickly what it is portraying. 
+
+It is important to note, the outliers are removed. It may be more beneficial to set price point brackets on the type of sneakers from affordable to luxury. 
+That way, Shopify can do a better analysis on the goods sold by sellers and in turn can produce meaningful statistics from the revenue.
 
 ### 1a. Think about what could be going wrong with our calculation. Think about a better way to evaluate this data.
 
-With the calculation, a better way to calculate the average order value
-(AOV) is to take the average of each store rather than the average of
+With the calculation, a better way to calculate the AOV is to take the 
+average of each store rather than the average of
 the entire order_amount. The data becomes more skewed when we take an
 average without thinking of other factors. For this specific dataset,
 understanding that although sneakers are a relatively affordable item,
@@ -124,7 +141,7 @@ a.  How many orders were shipped by Speedy Express in total?
 b.  What is the last name of the employee with the most orders?
 c.  What product was ordered the most by customers in Germany?
 
-## a. How many orders were shipped by Speedy Express in total?
+### a. How many orders were shipped by Speedy Express in total?
 
 A total of 54 orders were shipped by Speedy Express. 
 
@@ -132,7 +149,7 @@ A total of 54 orders were shipped by Speedy Express.
 SELECT * FROM Orders
 WHERE ShipperID='1'
 ```
-## b. What is the last name of the employee with the most orders?
+### b. What is the last name of the employee with the most orders?
 
 The last name of the employee with the most orders is Peacock.
 
@@ -147,7 +164,7 @@ DESC
 LIMIT 1
 ```
 
-## c. What product was ordered the most by customers in Germany?
+### c. What product was ordered the most by customers in Germany?
 
 The product that was ordered the most by customers in Germany is
 Boston Crab Meat. 
