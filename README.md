@@ -50,7 +50,7 @@ ggplot(data = sneakers, mapping = aes(x = shop_id, AverageStoreValue, size = Ave
        size = "Store value by size") +
   guides(colour = FALSE)
 ```
-![](images/Plot1.png)
+![](images/shopify_assessment_plot1.png)
 
 ### Remove outliers and re-visualize data
 
@@ -68,7 +68,7 @@ ggplot(data = sneaker_outliers, mapping = aes(x = shop_id, AverageStoreValue, co
        size = "Average order value by size",
        color = "Order amount")
 ```
-![](images/Plot2.png)
+![](images/shopify_assessment_plot2.png)
 
 ### 1a. Think about what could be going wrong with our calculation. Think about a better way to evaluate this data.
 
