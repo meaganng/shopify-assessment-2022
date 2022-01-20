@@ -66,6 +66,7 @@ the assumption that these two stores sell higher than average sneakers. This is 
 sneaker_outliers <- sneakers %>%
   mutate(AverageStoreValue = sort(AverageStoreValue, decreasing = T)) %>% # You can see there are 2 outliers when we look at the ascending to descending values of the average store 
   filter(!AverageStoreValue > 1000) # Filter stores out that have an AverageStoreValue greater than 1000
+  
 # Visualize the data without outliers
 ggplot(data = sneaker_outliers, mapping = aes(x = shop_id, AverageStoreValue, color = AverageStoreValue, size = AverageStoreValue)) + 
   geom_point() + 
@@ -76,6 +77,15 @@ ggplot(data = sneaker_outliers, mapping = aes(x = shop_id, AverageStoreValue, co
        color = "Order amount")
 ```
 ![](images/shopify_assessment_plot2.png)
+
+### Final thoughts
+
+Wow! After removing the outliers, you can clearly see that the AOV of shop 42 and 78 skewed the data enormously. 
+With the size dot variation and variable colours you can see which shops have large AOV's visually. This helps viewers
+glance easily at a graph and be able to understand quickly what it is portraying. 
+
+It is important to note, the outliers are removed. It may be more beneficial to set price point brackets on the type of sneakers from affordable to luxury. 
+That way, Shopify can do a better analysis on the goods sold by sellers and in turn can produce meaningful statistics from the revenue.
 
 ### 1a. Think about what could be going wrong with our calculation. Think about a better way to evaluate this data.
 
@@ -131,7 +141,7 @@ a.  How many orders were shipped by Speedy Express in total?
 b.  What is the last name of the employee with the most orders?
 c.  What product was ordered the most by customers in Germany?
 
-## a. How many orders were shipped by Speedy Express in total?
+### a. How many orders were shipped by Speedy Express in total?
 
 A total of 54 orders were shipped by Speedy Express. 
 
@@ -139,7 +149,7 @@ A total of 54 orders were shipped by Speedy Express.
 SELECT * FROM Orders
 WHERE ShipperID='1'
 ```
-## b. What is the last name of the employee with the most orders?
+### b. What is the last name of the employee with the most orders?
 
 The last name of the employee with the most orders is Peacock.
 
@@ -154,7 +164,7 @@ DESC
 LIMIT 1
 ```
 
-## c. What product was ordered the most by customers in Germany?
+### c. What product was ordered the most by customers in Germany?
 
 The product that was ordered the most by customers in Germany is
 Boston Crab Meat. 
