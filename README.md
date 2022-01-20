@@ -139,9 +139,10 @@ b.  What is the last name of the employee with the most orders?
 c.  What product was ordered the most by customers in Germany?
 
 ## a. How many orders were shipped by Speedy Express in total?
-
-SELECT \* FROM Orders WHERE ShipperID='1'
-
+```{sql}
+SELECT * FROM Orders
+WHERE ShipperID='1'
+```
 ## b. What is the last name of the employee with the most orders?
 
 SELECT e.LastName, COUNT(o.OrderID) as NumberofOrders FROM Employees as
